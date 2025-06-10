@@ -147,7 +147,9 @@ const CustomNavbar = ({ isCompact }) => {
           </div>
         )}
       </div>
-      {showParentsMenu && <ParentsMenu onClose={() => setShowParentsMenu(false)} />}
+      {showParentsMenu && (
+        <ParentsMenu onClose={() => setShowParentsMenu(false)} />
+      )}
     </div>
   );
 };
