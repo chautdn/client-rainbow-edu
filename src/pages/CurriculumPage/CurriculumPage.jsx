@@ -11,6 +11,7 @@ export const CurriculumPage = () => {
     const learningPathRef = useRef(null);
     const mathCategoryRef = useRef(null);
     const vietnameseCategoryRef = useRef(null);
+    const animalsCategoryRef = useRef(null);
     const [isCompact, setIsCompact] = useState(false);
     const [activeTab, setActiveTab] = useState("learning");
 
@@ -27,6 +28,7 @@ export const CurriculumPage = () => {
                 { key: "learning", ref: learningPathRef },
                 { key: "math", ref: mathCategoryRef },
                 { key: "vietnamese", ref: vietnameseCategoryRef },
+                { key: "animals", ref: animalsCategoryRef },
             ];
             let found = null;
             let maxVisible = 0;
@@ -69,7 +71,7 @@ export const CurriculumPage = () => {
         const distance = offsetPosition - startPosition;
         const duration = 1000;
         let start = null;
-        
+
         const animation = (currentTime) => {
             if (start === null) start = currentTime;
             const timeElapsed = currentTime - start;
@@ -101,6 +103,9 @@ export const CurriculumPage = () => {
         if (section === "vietnamese" && vietnameseCategoryRef.current) {
             smoothScrollTo(vietnameseCategoryRef.current);
         }
+        if (section === "animals" && animalsCategoryRef.current) {
+            smoothScrollTo(animalsCategoryRef.current);
+        }
     };
 
     return (
@@ -109,7 +114,7 @@ export const CurriculumPage = () => {
             <FallingNumbers />
             <FallingShapes />
             <ShapesAnimation />
-            
+
             {/* Orbiting Icons */}
             <span className="text-7xl orbiting-icon2 fixed top-20 right-10 z-0">
                 🚀
@@ -117,21 +122,21 @@ export const CurriculumPage = () => {
             <span className="text-8xl orbiting-icon fixed bottom-20 left-10 z-0">
                 🚀
             </span>
-            
+
             {/* Additional floating educational icons */}
-            <span className="text-6xl fixed top-1/3 left-5 z-0 animate-bounce" style={{animationDelay: '0.5s'}}>
+            <span className="text-6xl fixed top-1/3 left-5 z-0 animate-bounce" style={{ animationDelay: '0.5s' }}>
                 📚
             </span>
-            <span className="text-5xl fixed top-1/2 right-5 z-0 animate-bounce" style={{animationDelay: '1s'}}>
+            <span className="text-5xl fixed top-1/2 right-5 z-0 animate-bounce" style={{ animationDelay: '1s' }}>
                 ✏️
             </span>
-            <span className="text-6xl fixed bottom-1/3 left-1/4 z-0 animate-bounce" style={{animationDelay: '1.5s'}}>
+            <span className="text-6xl fixed bottom-1/3 left-1/4 z-0 animate-bounce" style={{ animationDelay: '1.5s' }}>
                 🎓
             </span>
-            <span className="text-5xl fixed top-1/4 right-1/3 z-0 animate-bounce" style={{animationDelay: '2s'}}>
+            <span className="text-5xl fixed top-1/4 right-1/3 z-0 animate-bounce" style={{ animationDelay: '2s' }}>
                 📖
             </span>
-            
+
             <main className="relative z-10">
                 <div>
                     <div className="sticky top-0 z-50">
@@ -139,7 +144,7 @@ export const CurriculumPage = () => {
                         <div className="w-full h-12 bg-gradient-to-r from-purple-500/30 via-pink-500/30 to-blue-500/30 rounded-b-2xl blur-sm"></div>
                         <Tabs onTabClick={handleScrollTo} activeTab={activeTab} />
                     </div>
-                    
+
                     <div className="p-6 max-w-7xl mx-auto" ref={learningPathRef}>
                         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-white/50 p-8 mb-8">
                             <LearningPath />
@@ -148,21 +153,21 @@ export const CurriculumPage = () => {
 
                     <div className="p-6 max-w-7xl mx-auto" ref={mathCategoryRef}>
                         <div className="bg-gradient-to-br from-blue-100/90 to-cyan-100/90 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-white/50 p-8 mb-8">
-                            <CategorySection title="Chương trình toán học" active={activeTab === "math"} />
+                            <CategorySection title="Chương trình toán học" active={activeTab === "math"} categoryType="math" />
                         </div>
-                        
+
                         {/* Fun Math Elements */}
                         <div className="flex justify-center space-x-6 mt-8 mb-8">
                             <div className="bg-blue-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white">
                                 🔢
                             </div>
-                            <div className="bg-cyan-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{animationDelay: '0.2s'}}>
+                            <div className="bg-cyan-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.2s' }}>
                                 ➕
                             </div>
-                            <div className="bg-teal-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{animationDelay: '0.4s'}}>
+                            <div className="bg-teal-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.4s' }}>
                                 ➖
                             </div>
-                            <div className="bg-blue-400 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{animationDelay: '0.6s'}}>
+                            <div className="bg-blue-400 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.6s' }}>
                                 ✖️
                             </div>
                         </div>
@@ -170,26 +175,55 @@ export const CurriculumPage = () => {
 
                     <div className="p-6 max-w-7xl mx-auto" ref={vietnameseCategoryRef}>
                         <div className="bg-gradient-to-br from-pink-100/90 to-rose-100/90 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-white/50 p-8 mb-8">
-                            <CategorySection title="Chương trình Tiếng Việt" active={activeTab === "vietnamese"} />
+                            <CategorySection title="Chương trình Tiếng Việt" active={activeTab === "vietnamese"} categoryType="vietnamese" />
                         </div>
-                        
+
+                    </div>
+
+                    <div className="p-6 max-w-7xl mx-auto" ref={animalsCategoryRef}>
+                        {/* Animal Lessons Section */}
+                        <div className="bg-gradient-to-br from-purple-100/90 to-violet-100/90 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-white/50 p-8 mb-8 relative overflow-hidden">
+                            {/* Background decoration */}
+                            <div className="absolute top-4 right-4 text-6xl opacity-20">🐾</div>
+                            <div className="absolute bottom-4 left-4 text-5xl opacity-20">🦁</div>
+                            <div className="absolute top-1/2 right-1/3 text-4xl opacity-15">🐘</div>
+                            
+                            <CategorySection title="🐾 Bài học về động vật 🐾" active={activeTab === "animals"} categoryType="vietnamese" note="animals" />
+                        </div>
+
+                        {/* Fun Animals Elements */}
+                        <div className="flex justify-center space-x-6 mt-8 mb-8">
+                            <div className="bg-purple-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white">
+                                🐶
+                            </div>
+                            <div className="bg-violet-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.2s' }}>
+                                🐱
+                            </div>
+                            <div className="bg-indigo-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.4s' }}>
+                                🐘
+                            </div>
+                            <div className="bg-purple-400 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.6s' }}>
+                                🦁
+                            </div>
+                        </div>
+
                         {/* Fun Vietnamese Elements */}
                         <div className="flex justify-center space-x-6 mt-8 mb-8">
                             <div className="bg-pink-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white">
                                 📝
                             </div>
-                            <div className="bg-rose-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{animationDelay: '0.2s'}}>
+                            <div className="bg-rose-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.2s' }}>
                                 📖
                             </div>
-                            <div className="bg-red-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{animationDelay: '0.4s'}}>
+                            <div className="bg-red-300 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.4s' }}>
                                 🗣️
                             </div>
-                            <div className="bg-pink-400 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{animationDelay: '0.6s'}}>
+                            <div className="bg-pink-400 p-6 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.6s' }}>
                                 📚
                             </div>
                         </div>
                     </div>
-                    
+
                     {/* Bottom Fun Section */}
                     <div className="p-6 max-w-7xl mx-auto text-center mb-12">
                         <div className="bg-gradient-to-r from-yellow-200/90 to-orange-200/90 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-white/50 p-8">
@@ -203,10 +237,10 @@ export const CurriculumPage = () => {
                                 <div className="bg-yellow-300 p-4 rounded-full shadow-xl animate-bounce border-2 border-white">
                                     🏆
                                 </div>
-                                <div className="bg-orange-300 p-4 rounded-full shadow-xl animate-bounce border-2 border-white" style={{animationDelay: '0.3s'}}>
+                                <div className="bg-orange-300 p-4 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.3s' }}>
                                     🎉
                                 </div>
-                                <div className="bg-red-300 p-4 rounded-full shadow-xl animate-bounce border-2 border-white" style={{animationDelay: '0.6s'}}>
+                                <div className="bg-red-300 p-4 rounded-full shadow-xl animate-bounce border-2 border-white" style={{ animationDelay: '0.6s' }}>
                                     🌈
                                 </div>
                             </div>
